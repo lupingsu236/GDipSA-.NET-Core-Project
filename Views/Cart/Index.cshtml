@@ -1,6 +1,85 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Cart";
+    List<string> cart = (List<string>)ViewData["cart"];
 }
+
+@section Scripts{
+    <script src="~/js/cart/index.js"></script>
+}
+
+<style>
+    table {
+        margin: auto;
+        text-align: center;
+    }
+
+    .add, .reduce {
+        height: 23px;
+        width: 23px;
+        background: #f0f0f0;
+        color: #444;
+    }
+
+        .add:hover, .reduce:hover {
+            cursor: pointer;
+        }
+
+    .count-input {
+        width: 60px;
+        text-align: center;
+    }
+
+    .removeBtn {
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+    }
+
+    .checkoutBtn {
+        background-color: #e5e2e2;
+        font-weight: bold;
+        color: #444;
+    }
+
+    .closing {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 30px;
+        font-weight: bold;
+    }
+</style>
+
 <h1>This is the Cart page.</h1>
+
+<div class="bottom" id="bottom" align="right">
+    <div class="closing">Total:$<span id="totalPrice">300.00</span></div>
+    <div><input type="button" value="CHECKOUT" class="checkoutBtn" id="checkoutBtn" /></div>
+</div>
+
+
+<table border="1" align="center" id="cartTable">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Unit Price($)</th>
+            <th>Quantity</th>
+            <th>Subtotal($)</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < cart.Count; i++)
+        {
+            <tr>
+                <td class="products">@cart[i]</td>
+                <td class="unitptrice">100</td>
+                <td class="count">
+                    <span class="reduce">-</span>
+                    <input class="count-input" type="text" value="1" />
+                    <span class="add">+</span>
+                </td>
+                <td class="subtotal">100</td>
+                <td class="operation"><input type="button" value="remove" class="removeBtn" /></td>
+            </tr>
+        }
+    </tbody>
+</table>

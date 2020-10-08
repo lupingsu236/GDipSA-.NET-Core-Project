@@ -10,6 +10,8 @@ namespace Layout.Controllers
     {
         public IActionResult Index()
         {
+            List<string> cart = new List<string>() { "product1", "product2", "product3" };
+            ViewData["cart"] = cart;
             return View();
         }
     }
