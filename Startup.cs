@@ -34,6 +34,15 @@ namespace Layout
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, [FromServices] Database db)
         {
+            bool wantreset = Configuration.GetValue<bool>("Db:WantReset");
+            if (wantreset)
+            {
+                db.Database.EnsureDeleted();    // wipe out existing database
+                db.Database.EnsureCreated();    // our database is created after this line
+
+                new DbSeedData(db).Seed();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -61,16 +70,6 @@ namespace Layout
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-
-            bool wantreset = Configuration.GetValue<bool>("Db:WantReset");
-            if(wantreset)
-            {
-                db.Database.EnsureDeleted();    // wipe out existing database
-                db.Database.EnsureCreated();    // our database is created after this line
-
-                new DbSeedData(db).Seed();
-            }
         }
     }
 }
