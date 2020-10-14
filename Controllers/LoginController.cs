@@ -51,8 +51,14 @@ namespace Layout.Controllers
 
                 string currentGuestId = Request.Cookies["guestId"];
                 User currentGuestUser = db.Users.FirstOrDefault(x => x.Id == currentGuestId);
+                Cart cartMadeByGuest = null;
 
-                Cart cartMadeByGuest = db.Carts.FirstOrDefault(x => x.UserId == currentGuestUser.Id);
+                if (currentGuestUser!=null)
+                {
+                    cartMadeByGuest = db.Carts.FirstOrDefault(x => x.UserId == currentGuestUser.Id);
+                    db.Remove(currentGuestUser);
+                    db.SaveChanges();
+                }
 
                 //if guest user did have items in cart
                 if (cartMadeByGuest != null)
@@ -121,9 +127,6 @@ namespace Layout.Controllers
                         db.Remove(cartMadeByGuest);
                     }
                 }
-
-                db.Remove(currentGuestUser);
-                db.SaveChanges();
 
                 Response.Cookies.Delete("guestId");
 
