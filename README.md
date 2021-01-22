@@ -11,5 +11,5 @@ Users can choose whether to login prior to adding products to cart. They will be
 My main contributions include: 
 1. Management of Purchase History and Activation Codes (including design of data models, controller, HTML/CSS/JavaScript) 
 2. JavaScript for search bar and login 
-3. Enhancement to overall layout and appearance 
+3. Enhancement to overall layout and views of various pages 
 4. Overall integration, testing and debugging 
