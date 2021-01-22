@@ -7,7 +7,7 @@ Login/Logout, View Product Listing, Search for Products, Add to Cart, View Cart,
 
 Users can choose whether to login prior to adding products to cart. They will be directed to the login page upon checkout if they have yet to login, and their shopping cart will be preserved accordingly. 
 
-## My contributions to the Project
+## My Contributions to the Project
 My main contributions include: 
 1. Management of Purchase History and Activation Codes (including design of data models, controller, HTML/CSS/JavaScript) 
 2. JavaScript for search bar and login 
